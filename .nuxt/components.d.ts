@@ -2,6 +2,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     'Navbar': typeof import("../components/Navbar/index.vue")['default']
+    'Register': typeof import("../components/Register/index.vue")['default']
     'Signup': typeof import("../components/Signup/index.vue")['default']
     'NuxtWelcome': typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
     'NuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -33,6 +34,7 @@ declare module 'vue' {
     'Html': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'LazyNavbar': typeof import("../components/Navbar/index.vue")['default']
+    'LazyRegister': typeof import("../components/Register/index.vue")['default']
     'LazySignup': typeof import("../components/Signup/index.vue")['default']
     'LazyNuxtWelcome': typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
     'LazyNuxtLayout': typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -67,6 +69,7 @@ declare module 'vue' {
 }
 
 export const Navbar: typeof import("../components/Navbar/index.vue")['default']
+export const Register: typeof import("../components/Register/index.vue")['default']
 export const Signup: typeof import("../components/Signup/index.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -98,6 +101,7 @@ export const Head: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const LazyNavbar: typeof import("../components/Navbar/index.vue")['default']
+export const LazyRegister: typeof import("../components/Register/index.vue")['default']
 export const LazySignup: typeof import("../components/Signup/index.vue")['default']
 export const LazyNuxtWelcome: typeof import("../node_modules/@nuxt/ui-templates/dist/templates/welcome.vue")['default']
 export const LazyNuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
