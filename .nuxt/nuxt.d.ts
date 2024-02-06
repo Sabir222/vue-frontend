@@ -2,6 +2,7 @@
 /// <reference types="@nuxtjs/tailwindcss" />
 /// <reference types="shadcn-nuxt" />
 /// <reference types="@pinia/nuxt" />
+/// <reference types="@pinia-plugin-persistedstate/nuxt" />
 /// <reference types="@nuxt/telemetry" />
 /// <reference types="nuxt" />
 /// <reference path="types/plugins.d.ts" />

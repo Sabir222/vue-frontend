@@ -16,17 +16,17 @@ const form = useForm({
 const onSubmit = form.handleSubmit(async (values) => {
   const { email, password } = values;
   const auth = useAuth();
-  await auth.login(email, password);
-  console.log(
-    auth.user?.email,
-    auth.user?.full_name,
-    auth.user?.user_id,
-    auth.user?.role
-  );
+  const res = await auth.login(email, password);
+  console.log(res, "response");
+  navigateTo("/");
 });
+
+const auth = useAuth().isAuthenticated;
+
+if (auth) navigateTo("/");
 </script>
 <template>
-  <section class="flex items-center justify-center min-h-screen">
+  <section class="flex items-center justify-center min-h-screen" v-if="!auth">
     <div
       class="p-5 rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex flex-col max-w-xl w-full"
     >

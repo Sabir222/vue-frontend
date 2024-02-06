@@ -14,6 +14,7 @@ export const useAuthStore = defineStore("auth", {
     isAuthenticated: false,
     user: null,
   }),
+  persist: { storage: persistedState.localStorage },
   actions: {
     async login(email: string, password: string): Promise<void> {
       const requestBody = JSON.stringify({
@@ -39,7 +40,20 @@ export const useAuthStore = defineStore("auth", {
         console.log(error);
       }
     },
-    logout(): void {
+    async logout() {
+      try {
+        const response = await fetch(
+          "http://localhost:8080/api/v1/auth/logout"
+        );
+        if (response.ok) {
+          console.log("Logged out successfully");
+        } else {
+          throw new Error("failed to log out!");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+
       this.isAuthenticated = false;
       this.user = null;
     },
