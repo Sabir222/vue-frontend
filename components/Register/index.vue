@@ -6,14 +6,8 @@ import { useForm } from "vee-validate";
 const formSchema = toTypedSchema(
   z.object({
     fullName: z.string().min(2).max(50).nonempty("Name is required"),
-    email: z
-      .string()
-      .nonempty("Email is required")
-      .email("Must be a valid email"),
-    hashedPassword: z
-      .string()
-      .nonempty("Password is required")
-      .min(8, "Too short"),
+    email: z.string().email("Must be a valid email"),
+    hashedPassword: z.string().min(8, "Too short"),
   })
 );
 
@@ -42,7 +36,7 @@ const onSubmit = form.handleSubmit(async (values) => {
 });
 </script>
 <template>
-  <section class="min-h-screen flex justify-center items-center">
+  <section class="flex items-center justify-center min-h-screen">
     <div
       class="p-5 rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex flex-col max-w-xl w-full"
     >
