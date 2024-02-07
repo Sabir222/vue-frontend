@@ -2,9 +2,6 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import * as z from "zod";
 import { useForm } from "vee-validate";
-import { ref } from "vue";
-
-const isLoading = ref(false);
 
 const formSchema = toTypedSchema(
   z.object({
