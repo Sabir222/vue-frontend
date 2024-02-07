@@ -2,6 +2,9 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import * as z from "zod";
 import { useForm } from "vee-validate";
+import { ref } from "vue";
+
+const isLoading = ref(false);
 
 const formSchema = toTypedSchema(
   z.object({
@@ -16,9 +19,11 @@ const form = useForm({
 const onSubmit = form.handleSubmit(async (values) => {
   const { email, password } = values;
   const auth = useAuth();
-  const res = await auth.login(email, password);
-  console.log(res, "response");
-  navigateTo("/");
+  try {
+    await auth.login(email, password);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const auth = useAuth().isAuthenticated;

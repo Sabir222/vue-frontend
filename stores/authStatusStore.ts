@@ -33,6 +33,7 @@ export const useAuthStore = defineStore("auth", {
           const { user_id, full_name, email, role } = await response.json();
           this.isAuthenticated = true;
           this.user = { user_id, full_name, email, role };
+          navigateTo("/");
         } else {
           throw new Error("failed to log!");
         }

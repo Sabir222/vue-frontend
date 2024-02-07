@@ -2,12 +2,14 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import * as z from "zod";
 import { useForm } from "vee-validate";
+import { ref } from "vue";
 
+const isLoading = ref(false);
 const formSchema = toTypedSchema(
   z.object({
     fullName: z.string().min(2).max(50).nonempty("Name is required"),
     email: z.string().email("Must be a valid email"),
-    hashedPassword: z.string().min(8, "Too short"),
+    password: z.string().min(8, "Too short"),
   })
 );
 
@@ -15,7 +17,7 @@ const form = useForm({
   validationSchema: formSchema,
 });
 const onSubmit = form.handleSubmit(async (values) => {
-  console.log("Form submitted!", values);
+  isLoading.value = true;
   try {
     const response = await fetch("http://localhost:8080/api/v1/users", {
       method: "POST",
@@ -27,11 +29,15 @@ const onSubmit = form.handleSubmit(async (values) => {
 
     if (response.ok) {
       console.log("registered successfully!");
+      navigateTo("/signup");
+      isLoading.value = false;
     } else {
+      isLoading.value = false;
       throw new Error("registration failed!");
     }
   } catch (error) {
     console.error(error);
+    isLoading.value = false;
   }
 });
 </script>
@@ -62,7 +68,7 @@ const onSubmit = form.handleSubmit(async (values) => {
             <FormMessage />
           </FormItem>
         </FormField>
-        <FormField v-slot="{ componentField }" name="hashedPassword">
+        <FormField v-slot="{ componentField }" name="password">
           <FormItem>
             <FormControl>
               <Input
@@ -74,7 +80,7 @@ const onSubmit = form.handleSubmit(async (values) => {
             <FormMessage />
           </FormItem>
         </FormField>
-        <Button type="submit"> Register </Button>
+        <Button type="submit" :disabled="isLoading"> Register </Button>
       </form>
     </div>
   </section>

@@ -14,7 +14,7 @@ const logout = () => {
   >
     <NuxtLink to="/" class="mr-auto"><Button>Home</Button> </NuxtLink>
     <NuxtLink to="/signup" v-if="!auth"><Button>Signup</Button> </NuxtLink>
-    <Avatar />
+    <Profile v-if="auth" />
     <Button class="" v-if="auth" @click="logout">Logout</Button>
   </nav>
 </template>
