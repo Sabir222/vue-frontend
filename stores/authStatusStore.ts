@@ -22,18 +22,22 @@ export const useAuthStore = defineStore("auth", {
         password: password,
       });
       try {
-        const response = await fetch("http://localhost:8080/api/v1/auth", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: requestBody,
-        });
+        const response = await fetch(
+          "http://localhost:8080/api/v1/auth/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: requestBody,
+          }
+        );
         if (response.ok) {
           const { user_id, full_name, email, role } = await response.json();
           this.isAuthenticated = true;
           this.user = { user_id, full_name, email, role };
           navigateTo("/");
+          reloadNuxtApp();
         } else {
           throw new Error("failed to log!");
         }

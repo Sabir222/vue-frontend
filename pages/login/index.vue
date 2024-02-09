@@ -4,5 +4,5 @@ definePageMeta({
 });
 </script>
 <template>
-  <Register />
+  <Login />
 </template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 import { toTypedSchema } from "@vee-validate/zod";
 import * as z from "zod";
 import { useForm } from "vee-validate";
@@ -19,17 +20,20 @@ const form = useForm({
 const onSubmit = form.handleSubmit(async (values) => {
   isLoading.value = true;
   try {
-    const response = await fetch("http://localhost:8080/api/v1/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
+    const response = await fetch(
+      "http://localhost:8080/api/v1/users/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
 
     if (response.ok) {
       console.log("registered successfully!");
-      navigateTo("/signup");
+      navigateTo("/Login");
       isLoading.value = false;
     } else {
       isLoading.value = false;
@@ -40,6 +44,10 @@ const onSubmit = form.handleSubmit(async (values) => {
     isLoading.value = false;
   }
 });
+
+const toLogin = () => {
+  return navigateTo("/login");
+};
 </script>
 <template>
   <section class="flex items-center justify-center min-h-screen">
@@ -81,6 +89,10 @@ const onSubmit = form.handleSubmit(async (values) => {
           </FormItem>
         </FormField>
         <Button type="submit" :disabled="isLoading"> Register </Button>
+        <p class="text-sm text-center text-gray-400">
+          You already have an account ?
+          <span @click="toLogin" class="cursor-pointer">Login</span>
+        </p>
       </form>
     </div>
   </section>
