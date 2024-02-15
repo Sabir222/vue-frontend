@@ -52,6 +52,7 @@ export const useAuthStore = defineStore("auth", {
         );
         if (response.ok) {
           console.log("Logged out successfully");
+          useFriends().resetState();
         } else {
           throw new Error("failed to log out!");
         }
