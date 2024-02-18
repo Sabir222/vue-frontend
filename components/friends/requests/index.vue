@@ -31,6 +31,7 @@ onMounted(async () => {
 <template>
   <Tabs default-value="chat" class="w-full">
     <TabsList class="w-full rounded-none">
+    
       <TabsTrigger value="chat"> Chat </TabsTrigger>
       <TabsTrigger value="request"> Request </TabsTrigger>
     </TabsList>
